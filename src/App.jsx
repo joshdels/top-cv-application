@@ -4,6 +4,7 @@ import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
 import GeneralInformation from "./GeneralInformation";
+import EducationInformation from "./EducationInformation";
 
 export default function App() {
   const [generalInfo, setGeneralInfo] = useState({});
@@ -12,22 +13,13 @@ export default function App() {
 
   return (
     <>
-      {/* Write the paper form here */}
-      {/* Result Paper */}
       <h1>CV Application</h1>
 
       <GeneralInformation />
-      {/* Get the general information first */}
-
-      {/* <EducationInformation />
-      <ExperienceInformation /> */}
+      <EducationInformation />
     </>
   );
 }
-
-
-
-
 
 function ExperienceInformation() {
   return (
