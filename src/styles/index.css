@@ -20,13 +20,14 @@ button {
   flex-direction: row;
   gap: 1rem;
   padding: 1rem;
+  min-height: calc(100vh - 2rem);
 }
 
 .download {
 }
 
 .app aside {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -41,8 +42,14 @@ button {
 }
 
 .app main {
-  flex: 1;
+  flex: 3;
   border: 1px black solid;
   padding: 1rem;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .app {
+    flex-direction: column;
+  }
 }

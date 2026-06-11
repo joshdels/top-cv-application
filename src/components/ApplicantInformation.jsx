@@ -5,64 +5,69 @@ export default function ApplicantInformation({
 }) {
   return (
     <>
-      <header>
-        <h1>{generalInfo.fullname}</h1>
-        <div>
-          <p>{generalInfo.email}</p>
-          <p>{generalInfo.phone}</p>
-          <p>{generalInfo.linkedin}</p>
-          <p>{generalInfo.github}</p>
-        </div>
-      </header>
+      <div className="paper">
+        <header>
+          <h1>{generalInfo.fullname}</h1>
+          <div>
+            <p>{generalInfo.email}</p>
+            <p>{generalInfo.phone}</p>
+            <p>{generalInfo.linkedin}</p>
+            <p>{generalInfo.github}</p>
+          </div>
+        </header>
 
-      <section className="education">
-        {educationList.length > 0 && (
-          <>
-            <h1>Education</h1>
+        <section className="education">
+          {educationList.length > 0 && (
+            <>
+              <h1>Education</h1>
 
-            {educationList.map((education, index) => (
-              <div key={index} className="school">
-                <h2>{education.school}</h2>
+              {educationList.map((education, index) => (
+                <div key={index} className="school">
+                  <div className="header">
+                    <h2>{education.school}</h2>
+                    <span>
+                      <p>{education.startDate}</p>
 
-                <div>
-                  <p>{education.degree}</p>
-                  <span>
-                    <p>{education.startDate}</p>
-                    <p>{education.endDate}</p>
-                  </span>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-      </section>
+                      <p>{education.endDate}</p>
+                    </span>
+                  </div>
 
-      <section className="experience">
-        {experienceList.length > 0 && (
-          <>
-            <h1>Experience</h1>
-
-            {experienceList.map((experience, index) => (
-              <div key={index} className="experience">
-                <div>
-                  <h2>{experience.organization}</h2>
                   <div>
-                    <p>{experience.startDate}</p>
-                    <p>{experience.endDate}</p>
+                    <p>{education.degree}</p>
                   </div>
                 </div>
-                <div class="italic">
-                  <p>{experience.title}</p>
-                  <p>{experience.location}</p>
+              ))}
+            </>
+          )}
+        </section>
+
+        <section className="experience">
+          {experienceList.length > 0 && (
+            <>
+              <h1>Experience</h1>
+
+              {experienceList.map((experience, index) => (
+                <div key={index} className="experience-content">
+                  <div className="header">
+                    <h2>{experience.organization}</h2>
+                    <div>
+                      <p>{experience.startDate}</p>
+                      <p>{experience.endDate}</p>
+                    </div>
+                  </div>
+                  <div class="italic">
+                    <p>{experience.title}</p>
+                    <p>{experience.location}</p>
+                  </div>
+                  <ul>
+                    <li>{experience.description}</li>
+                  </ul>
                 </div>
-                <li>
-                  {experience.description}
-                </li>
-              </div>
-            ))}
-          </>
-        )}
-      </section>
+              ))}
+            </>
+          )}
+        </section>
+      </div>
     </>
   );
 }

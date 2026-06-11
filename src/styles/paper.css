@@ -1,0 +1,71 @@
+.paper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* HEADER  */
+header {
+  text-align: center;
+}
+
+.paper header h1 {
+}
+
+.paper header div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* SECTIONS */
+
+section h1 {
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.education .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education .header span {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.experience .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.experience .header div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.experience .italic {
+  font-style: italic;
+  display: flex;
+  justify-content: space-between;
+}
+
+.experience-content ul li {
+  list-style-position: inside;
+  padding-left: 20px;
+}

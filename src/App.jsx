@@ -24,8 +24,6 @@ export default function App() {
       <aside>
         <h1>CV Application</h1>
 
-        <button className="download">Download</button>
-
         <div className="form-toggler">
           <GeneralInformation
             generalInfo={generalInfo}
