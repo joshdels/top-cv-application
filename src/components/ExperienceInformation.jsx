@@ -1,15 +1,19 @@
 import { useState } from "react";
 
-export default function EducationInformation() {
+export default function ExperienceInformation({
+  experienceList,
+  setExperienceList,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [addForm, setAddForm] = useState(false);
-  const [educationInfo, setEducationInfo] = useState({
-    school: "",
-    degree: "",
+  const [experienceInfo, setExperienceInfo] = useState({
+    organization: "",
+    title: "",
     startDate: "",
     endDate: "",
+    location: "",
+    description: "",
   });
-  const [educationList, setEducationList] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
   const toggler = () => {
@@ -23,18 +27,18 @@ export default function EducationInformation() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setEducationInfo((prev) => ({
+    setExperienceInfo((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const deleteEducation = (index) => {
-    setEducationList((prev) => prev.filter((_, i) => i !== index));
+  const deleteExperience = (index) => {
+    setExperienceList((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const editEducation = (index) => {
-    setEducationInfo(educationList[index]);
+  const editExperience = (index) => {
+    setExperienceInfo(experienceList[index]);
     setEditIndex(index);
     setAddForm(true);
   };
@@ -43,19 +47,22 @@ export default function EducationInformation() {
     e.preventDefault();
 
     if (editIndex !== null) {
-      setEducationList((prev) =>
-        prev.map((item, index) => (index === editIndex ? educationInfo : item)),
+      setExperienceList((prev) =>
+        prev.map((item, index) =>
+          index === editIndex ? experienceInfo : item,
+        ),
       );
       setEditIndex(null);
     } else {
-      setEducationList((prev) => [...prev, educationInfo]);
+      setExperienceList((prev) => [...prev, experienceInfo]);
     }
 
-    setEducationInfo({
-      school: "",
-      degree: "",
+    setExperienceInfo({
+      organization: "",
+      title: "",
       startDate: "",
       endDate: "",
+      description: "",
     });
 
     setAddForm(false);
@@ -65,23 +72,25 @@ export default function EducationInformation() {
     <>
       {isOpen ? (
         <>
-          <button onClick={toggler}>Education Information</button>
+          <button onClick={toggler}>Experience Information</button>
 
           {!addForm && (
             <div>
-              <EducationList
-                educationList={educationList}
-                deleteEducation={deleteEducation}
-                editEducation={editEducation}
+              <ExperienceList
+                experienceList={experienceList}
+                deleteExperience={deleteExperience}
+                editExperience={editExperience}
               />
-              <button onClick={formToggler}>Add Education</button>
+              <button onClick={formToggler} className="small-btn">
+                Add Experience
+              </button>
             </div>
           )}
 
           {addForm && (
             <div>
-              <EducationForm
-                educationInfo={educationInfo}
+              <ExperienceForm
+                experienceInfo={experienceInfo}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
               />
@@ -89,46 +98,56 @@ export default function EducationInformation() {
           )}
         </>
       ) : (
-        <button onClick={toggler}>Education Information</button>
+        <button onClick={toggler}>Experience Information</button>
       )}
     </>
   );
 }
 
-function EducationForm({ educationInfo, handleChange, handleSubmit }) {
+function ExperienceForm({ experienceInfo, handleChange, handleSubmit }) {
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>school</label>
+      <form onSubmit={handleSubmit} className="form">
+        <label htmlFor="">organization</label>
         <input
           type="text"
-          name="school"
-          value={educationInfo.school}
-          name="school"
+          name="organization"
+          value={experienceInfo.organization}
           onChange={handleChange}
         />
-        <label>degree</label>
+        <label htmlFor="">title</label>
         <input
           type="text"
-          name="degree"
-          value={educationInfo.degree}
-          name="degree"
+          name="title"
+          value={experienceInfo.title}
           onChange={handleChange}
         />
-        <label>start date</label>
+        <label htmlFor="">start date</label>
         <input
           type="text"
           name="startDate"
-          value={educationInfo.startDate}
-          name="startDate"
+          value={experienceInfo.startDate}
           onChange={handleChange}
         />
-        <label>end date</label>
+        <label htmlFor="">end date</label>
         <input
           type="text"
           name="endDate"
-          value={educationInfo.endDate}
-          name="endDate"
+          value={experienceInfo.endDate}
+          onChange={handleChange}
+        />
+        <label htmlFor="">location</label>
+        <input
+          type="text"
+          name="location"
+          value={experienceInfo.location}
+          onChange={handleChange}
+        />
+        <label htmlFor="">description</label>
+        <input
+          type="text"
+          name="description"
+          value={experienceInfo.description}
           onChange={handleChange}
         />
 
@@ -138,19 +157,21 @@ function EducationForm({ educationInfo, handleChange, handleSubmit }) {
   );
 }
 
-function EducationList({ educationList, deleteEducation, editEducation }) {
+function ExperienceList({ experienceList, deleteExperience, editExperience }) {
   return (
     <>
-      {educationList ? (
-        educationList.map((item, index) => (
-          <div key={index}>
-            <span>{item.school}</span>
-            <button onClick={() => editEducation(index)}>edit</button>
-            <button onClick={() => deleteEducation(index)}>delete</button>
+      {experienceList ? (
+        experienceList.map((item, index) => (
+          <div key={index} className="list">
+            <span>{item.organization}</span>
+            <div className="buttons">
+              <button onClick={() => editExperience(index)}>edit</button>
+              <button onClick={() => deleteExperience(index)}>delete</button>
+            </div>
           </div>
         ))
       ) : (
-        <p>No education records yet.</p>
+        <p>No Experience records yet.</p>
       )}
     </>
   );

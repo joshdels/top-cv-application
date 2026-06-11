@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-export default function EducationInformation() {
+export default function EducationInformation({
+  educationList,
+  setEducationList,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [addForm, setAddForm] = useState(false);
   const [educationInfo, setEducationInfo] = useState({
@@ -9,7 +12,6 @@ export default function EducationInformation() {
     startDate: "",
     endDate: "",
   });
-  const [educationList, setEducationList] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
   const toggler = () => {
@@ -74,7 +76,9 @@ export default function EducationInformation() {
                 deleteEducation={deleteEducation}
                 editEducation={editEducation}
               />
-              <button onClick={formToggler}>Add Education</button>
+              <button onClick={formToggler} className="small-btn">
+                Add Education
+              </button>
             </div>
           )}
 
@@ -98,7 +102,7 @@ export default function EducationInformation() {
 function EducationForm({ educationInfo, handleChange, handleSubmit }) {
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <label>school</label>
         <input
           type="text"
@@ -143,10 +147,12 @@ function EducationList({ educationList, deleteEducation, editEducation }) {
     <>
       {educationList ? (
         educationList.map((item, index) => (
-          <div key={index}>
+          <div key={index} className="list">
             <span>{item.school}</span>
-            <button onClick={() => editEducation(index)}>edit</button>
-            <button onClick={() => deleteEducation(index)}>delete</button>
+            <div className="buttons">
+              <button onClick={() => editEducation(index)}>edit</button>
+              <button onClick={() => deleteEducation(index)}>delete</button>
+            </div>
           </div>
         ))
       ) : (

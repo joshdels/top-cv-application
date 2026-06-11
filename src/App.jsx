@@ -5,39 +5,49 @@ import heroImg from "./assets/hero.png";
 import "./styles/index.css";
 import GeneralInformation from "./components/GeneralInformation";
 import EducationInformation from "./components/EducationInformation";
+import ExperienceInformation from "./components/ExperienceInformation";
+import ApplicantInformation from "./components/ApplicantInformation";
 
 export default function App() {
-  const [generalInfo, setGeneralInfo] = useState({});
-  const [education, setEducation] = useState({});
-  const [experience, setExperience] = useState({});
+  const [generalInfo, setGeneralInfo] = useState({
+    fullname: "",
+    phone: "",
+    email: "",
+    linkedin: "",
+    github: "",
+  });
+  const [educationList, setEducationList] = useState([]);
+  const [experienceList, setExperienceList] = useState([]);
 
   return (
-    <>
-      <h1>CV Application</h1>
+    <div className="app">
+      <aside>
+        <h1>CV Application</h1>
 
-      <GeneralInformation />
-      <EducationInformation />
-    </>
-  );
-}
+        <button className="download">Download</button>
 
-function ExperienceInformation() {
-  return (
-    <>
-      <form action="">
-        <label htmlFor="">organization</label>
-        <input type="text" id="organization" />
-        <label htmlFor="">title</label>
-        <input type="text" id="title" />
-        <label htmlFor="">start date</label>
-        <input type="text" id="start-date" />
-        <label htmlFor="">end date</label>
-        <input type="text" id="end-date" />
-        <label htmlFor="">description</label>
-        <input type="text" id="description" />
-
-        <button type="submit">save</button>
-      </form>
-    </>
+        <div className="form-toggler">
+          <GeneralInformation
+            generalInfo={generalInfo}
+            setGeneralInfo={setGeneralInfo}
+          />
+          <EducationInformation
+            educationList={educationList}
+            setEducationList={setEducationList}
+          />
+          <ExperienceInformation
+            experienceList={experienceList}
+            setExperienceList={setExperienceList}
+          />
+        </div>
+      </aside>
+      <main>
+        <ApplicantInformation
+          generalInfo={generalInfo}
+          educationList={educationList}
+          experienceList={experienceList}
+        />
+      </main>
+    </div>
   );
 }
