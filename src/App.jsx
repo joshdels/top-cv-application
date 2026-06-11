@@ -2,9 +2,9 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
-import "./App.css";
-import GeneralInformation from "./GeneralInformation";
-import EducationInformation from "./EducationInformation";
+import "./styles/index.css";
+import GeneralInformation from "./components/GeneralInformation";
+import EducationInformation from "./components/EducationInformation";
 
 export default function App() {
   const [generalInfo, setGeneralInfo] = useState({});

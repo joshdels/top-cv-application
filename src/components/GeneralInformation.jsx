@@ -39,8 +39,7 @@ export default function GeneralInformation() {
             onChange={handleChange}
           />
           <label htmlFor="" id="phone">
-            {" "}
-            phone{" "}
+            phone
           </label>
           <input
             type="number"
